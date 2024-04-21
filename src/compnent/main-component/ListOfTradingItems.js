@@ -1,20 +1,25 @@
-import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function ListOfTradingItems() {
     const currencyvariablevalue = useSelector(state => state.MyCurrencyNames);
-
     const [listdataloaded, setListDataUpdate] = useState([]);
-    console.log(listdataloaded);
-    
-    useEffect(() => {
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;  // Number of items you want to display per page
+
+    // Function to handle pagination
+    function onNextButtonClick() {
+        setCurrentPage(currentPage + 1);
+    }
+
+/*     useEffect(() => {
         async function listOfTradingFunction() {
-            const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en`;
+            // const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en`;
+            const url = `/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en`;
+
             try {
                 const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
                 const data = await response.json();
                 setListDataUpdate(data);
             } catch (error) {
@@ -22,30 +27,52 @@ export default function ListOfTradingItems() {
             }
         }
         listOfTradingFunction();
-    }, [currencyvariablevalue]); // Added dependency on currencyvariablevalue
+    }, [currencyvariablevalue, currentPage]);  */
+
+    useEffect(() => {
+        async function fetchTradingData() {
+          const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en`;
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'Accept': 'application/json' // Ensure the API knows you want JSON
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`); // Handle HTTP errors
+                }
+                const data = await response.json(); // Attempt to parse JSON
+                setListDataUpdate(data);
+            } catch (error) {
+                console.error("Failed to fetch data:", error);
+            }
+        }
+        fetchTradingData();
+    }, [currencyvariablevalue, currentPage]);
+
+
 
     return (
         <>
             <div>
-                <h1>Cryptocurrency by market cap</h1>
-                <div>
-                    <p>{currencyvariablevalue}</p>
+                <h1 className="text-red-500">Cryptocurrency Dashboard</h1>
+                <div className="bg-cyan-300 rounded-lg mt-4">
+                    <p >{currencyvariablevalue.toUpperCase()}</p>
                 </div>
-                <div className="main">
 
-                    {listdataloaded.map((item, key) => (
-                        <div className="rounded-lg border-2 border-orange-600 m-2 flex p-2" key={key}>
-                        <img src={item.image} width={'50px'} alt={item.name} />
-                        <p className="mx-5 mt-2">{item.name}</p>
-                        <div className="block">
-                            <p>{item.current_price}</p>
+                <div className="main">
+                    
+                    {listdataloaded.slice(0, itemsPerPage).map((item, key) => (
+                        <div className="rounded-lg w-full border-2 border-black-600 m-2 flex flex-col p-2" key={key}>
+                            <div className="flex items-center">
+                                <img src={item.image} width="50px" alt={item.name} />
+                                <p className="mx-1 mt-2">{item.name}</p>
+                            </div>
+                            <p className="mt-0 text-left">Price: {item.current_price}</p>
                         </div>
-                    </div>
-                        
-                       
                     ))}
 
-
+                    <button className="p-2 bg-cyan-300 rounded-lg mt-4" onClick={onNextButtonClick}>Next</button>
                 </div>
             </div>
         </>

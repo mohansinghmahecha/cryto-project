@@ -11,5 +11,5 @@ export const store = createStore(
    MyCurrencyNames
 
   }),
-  composeEnhancers()
+  // composeEnhancers()
 );
