@@ -1,8 +1,8 @@
-import { listofallproduct , latestCrypto } from "../action";
+
 
 const InitialState = []
 const intialCurrencyName = "inr"
-const allTradingItems = []
+//const allTradingItems = []
 
 export const MyproductList = (state = InitialState, action) => {
     if (action.type === "LIST_PRODUCTS") {

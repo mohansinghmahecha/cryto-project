@@ -1,25 +1,24 @@
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { MyCurrencyNames } from "./../../Redux/State/reducer"
 import GraphDashBoardMain from "../graph-dashboard/GraphDashBoardMain";
 
 
 export default function Header() {
-    const [currencyName, setCurrencyName] = useState("")
+   
     const dispatch = useDispatch()
 
 
     useEffect(
         () => {
 
-        }, [setCurrencyName]
+        }, []
     )
 
     const selectCurrencyfunction = (e) => {
         var i = e.target.value;
-        setCurrencyName(i);
+        //setCurrencyName(i);
         console.log("data local updated", i);
         dispatch({ type: "NAME", payload: i }); // Dispatch action directly with payload
         
