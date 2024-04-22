@@ -12,6 +12,7 @@ export default function ListOfTradingItems() {
     function onNextButtonClick() {
         setCurrentPage(currentPage + 1);
     }
+    
 
 /*     useEffect(() => {
         async function listOfTradingFunction() {
@@ -33,14 +34,10 @@ export default function ListOfTradingItems() {
         async function fetchTradingData() {
           const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en`;
             try {
-                const response = await fetch(url, {
-                    headers: {
-                        'Accept': 'application/json' // Ensure the API knows you want JSON
-                    }
-                });
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`); // Handle HTTP errors
-                }
+                const response = await fetch(url);
+                /* if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                } */
                 const data = await response.json(); // Attempt to parse JSON
                 setListDataUpdate(data);
             } catch (error) {
@@ -61,7 +58,7 @@ export default function ListOfTradingItems() {
                 </div>
 
                 <div className="main">
-                    
+                   
                     {listdataloaded.slice(0, itemsPerPage).map((item, key) => (
                         <div className="rounded-lg w-full border-2 border-black-600 m-2 flex flex-col p-2" key={key}>
                             <div className="flex items-center">
