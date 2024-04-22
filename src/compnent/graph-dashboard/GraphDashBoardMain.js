@@ -107,7 +107,9 @@ export default function GraphDashBoardMain() {
 
                 padding: '20px'
             }}>
-                {/*  <p>Showing.. {variablenameshown}</p>*/}
+               <span> {variablenameshown} </span>
+               <span>Language in </span>
+               <span className='text-red-600'>{currencyvariablevalue.toUpperCase()}</span>
                 {graphdata ? <Line data={data} options={options} /> : <p>Loading graph...</p>}
             </div>
         </div>
