@@ -12,27 +12,27 @@ export default function ListOfTradingItems() {
     function onNextButtonClick() {
         setCurrentPage(currentPage + 1);
     }
+
+
+    /*     useEffect(() => {
+            async function listOfTradingFunction() {
+                // const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en`;
+                const url = `/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en`;
     
-
-/*     useEffect(() => {
-        async function listOfTradingFunction() {
-            // const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en`;
-            const url = `/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en`;
-
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                setListDataUpdate(data);
-            } catch (error) {
-                console.error("Failed to fetch data:", error);
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    setListDataUpdate(data);
+                } catch (error) {
+                    console.error("Failed to fetch data:", error);
+                }
             }
-        }
-        listOfTradingFunction();
-    }, [currencyvariablevalue, currentPage]);  */
+            listOfTradingFunction();
+        }, [currencyvariablevalue, currentPage]);  */
 
     useEffect(() => {
         async function fetchTradingData() {
-          const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en`;
+            const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en`;
             try {
                 const response = await fetch(url);
                 /* if (!response.ok) {
@@ -58,20 +58,34 @@ export default function ListOfTradingItems() {
                 </div>
 
                 <div className="main">
-                   
+
                     {listdataloaded.slice(0, itemsPerPage).map((item, key) => (
-                        <div className="rounded-lg w-full border-2 border-black-600 m-2 flex flex-col p-2" key={key}>
-                            <div className="flex items-center">
+                        <div className="rounded-lg w-auto border-2 border-black-600 m-2 flex flex-col p-2" key={key}>
+
+                            <div style={
+                                {
+                                    display: 'grid',
+                                    gridTemplateColumns: '80px 1fr'
+                                   
+
+                                }
+                            } className="	">
+                            <div>
                                 <img src={item.image} width="50px" alt={item.name} />
-                                <p className="mx-1 mt-2">{item.name}</p>
                             </div>
-                            <p className="mt-0 text-left">Price: {item.current_price}</p>
+                            <div>
+                                <p className="mx-1 mt-2 text-left">{item.name}</p>
+                                <p className="mt-0 text-left">Price: {item.current_price}</p>
+
+                            </div>
+
+                        </div>
                         </div>
                     ))}
 
-                    <button className="p-2 bg-cyan-300 rounded-lg mt-4" onClick={onNextButtonClick}>Next</button>
-                </div>
+                <button className="p-2 bg-cyan-300 rounded-lg mt-4" onClick={onNextButtonClick}>Next</button>
             </div>
+        </div >
         </>
     );
 }
