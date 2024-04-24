@@ -47,8 +47,10 @@ export default function ListOfTradingItems() {
                             <div className="flex items-center">
                                 <img src={item.image} width="50px" alt={item.name} />
                                 <p className="mx-1 mt-2">{item.name}</p>
+                                <p className="mx-1 mt-2 text-green-600 ">Rank:{item.market_cap_rank}</p>
                             </div>
                             <p className="mt-0 text-left">Price: {item.current_price}</p>
+                            <p className="mt-0 text-left">Total cap.: {item.market_cap}</p>
                         </div>
                     ))}
 
