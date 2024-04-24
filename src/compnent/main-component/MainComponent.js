@@ -4,31 +4,31 @@ import ListOfTradingItems from "./ListOfTradingItems";
 
 export default function MainComponent() {
     return (
-        <div>
-
-            <div className="wrapper" style={{ width: '100%', display: 'flex', marginTop: '2rem', flexWrap: 'wrap' }}>
-                <div style={{ flex: '1 1 70%' ,height : 'auto'}}> {/* s Use flex-grow, flex-shrink, and flex-basis */}
+        <div className="wrapper" style={{ width: '100%', display: 'flex', flexDirection: 'column', marginTop: '2rem' }}>
+            {/* Main content area with horizontal flexbox */}
+            <div style={{ display: 'flex', width: '100%', minHeight: '650px' }}>
+                {/* Header section, taking 75% of the width */}
+                <div style={{ flex: '3', minHeight: '650px' }}>
                     <Header />
                 </div>
 
-                <div style={{ flex: '1 1 25%' ,height : 'auto' }}>
+                {/* List of Trading Items section, taking 25% of the width */}
+                <div style={{ flex: '1', minHeight: '650px' }}> {/* Using flex: '1' to take one part of space */}
                     <ListOfTradingItems />
-                </div>
-
-
-                <div className="" style={{
-                    display :'block',
-                    width: "70%",
-                    marginTop:'-400px'
-
-                }}>
-                    <FooterComponent />
-
                 </div>
             </div>
 
+            {/* Footer component */}
+            <div style={
+                {
+                    display : 'none',
+                    width: '50%',
+                    marginTop : '-70vh'
+                }
+            }>
 
-
-
-        </div>);
+                <FooterComponent />
+            </div>
+        </div>
+    );
 }
