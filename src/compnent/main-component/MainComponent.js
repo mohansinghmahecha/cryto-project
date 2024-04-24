@@ -1,4 +1,4 @@
-import FooterComponent from "./FooterComponent";
+// import FooterComponent from "./FooterComponent";
 import Header from "./Header";
 import ListOfTradingItems from "./ListOfTradingItems";
 
@@ -27,7 +27,7 @@ export default function MainComponent() {
                 }
             }>
 
-                <FooterComponent />
+                {/* <FooterComponent /> */}
             </div>
         </div>
     );
