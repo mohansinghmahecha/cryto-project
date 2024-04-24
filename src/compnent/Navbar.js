@@ -1,4 +1,4 @@
-import ab from './../ab.webp'
+/* import ab from './../ab.webp' */
 import logo from '../ssjain.png'
 export default function Navbar() {
     return (
