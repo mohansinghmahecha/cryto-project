@@ -9,16 +9,16 @@ export default function GraphDashBoardMain() {
     const [listofdata, setlistofdata] = useState([]);
     const [variablenameshown, setVariableName] = useState('bitcoin');
     const [graphdata, setGraphData] = useState(null);
-    const [dayscount , setDaysCount] = useState('7')
+    const [dayscount, setDaysCount] = useState('7')
 
     const currencyvariablevalue = useSelector((s) => s.MyCurrencyNames);
 
     function datachanged(e) {
         setVariableName(e.target.value);
     }
-    function onDaysFunction(event){
+    function onDaysFunction(event) {
         return () => {
-        setDaysCount(event.toString())
+            setDaysCount(event.toString())
         }
     }
 
@@ -49,10 +49,16 @@ export default function GraphDashBoardMain() {
         return () => {
             abortController.abort();
         };
-    }, [currencyvariablevalue, variablenameshown,dayscount]);
+    }, [currencyvariablevalue, variablenameshown, dayscount]);
 
     const data = {
-        labels: graphdata ? graphdata.prices.map(price => new Date(price[0]).toLocaleString()) : [],
+        // labels: graphdata ? graphdata.prices.map(price => new Date(price[0]).toLocaleString()) : [],
+
+        labels: graphdata ? graphdata.prices.map(price => {
+            const date = new Date(price[0]);
+            return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+        }) : [],
+
         datasets: [
             {
                 label: 'Crypto Prices:',
@@ -85,21 +91,21 @@ export default function GraphDashBoardMain() {
 
     return (
         <div>
-            <div className='flex'>
-                <select onChange={datachanged}>
+            <div className='flex '>
+                <select className='border-2 border-yellow-600 rounded-lg mx-2' onChange={datachanged}>
                     {listofdata.map((item, index) => (
                         <option key={index} value={item.id}>{item.id}</option>
                     ))}
                 </select>
                 <div className='flex'>
-                <button onClick={onDaysFunction(1)} className='rounded m-1 border-4 border-pink-400' >1D </button>
-                <button onClick={onDaysFunction(5)} className='rounded m-1 border-4 border-pink-400'>5D </button>
-                <button onClick={onDaysFunction(7)} className='rounded m-1 border-4 border-pink-400' >7D </button>
-                <button onClick={onDaysFunction(30)} className='rounded m-1 border-4 border-pink-400' >1M </button>
-                <button onClick={onDaysFunction(90)} className='rounded m-1 border-4 border-pink-400' >3M </button>
-                <button className='rounded m-1 border-4 border-pink-400' >12M </button>
+                    <button onClick={onDaysFunction(1)} className='rounded m-1 bg-cyan-200 p-1' >1D </button>
+                    <button onClick={onDaysFunction(5)} className='rounded m-1 bg-cyan-200 p-1'>5D </button>
+                    <button onClick={onDaysFunction(7)} className='rounded m-1 bg-cyan-200 p-1' >7D </button>
+                    <button onClick={onDaysFunction(30)} className='rounded m-1 bg-cyan-200 p-1' >1M </button>
+                    <button onClick={onDaysFunction(90)} className='rounded m-1 bg-cyan-200 p-1' >3M </button>
+                    <button onClick={onDaysFunction(365)} className='rounded m-1 bg-cyan-200 p-1' >1Y </button>
                 </div>
-               
+
             </div>
             <div style={{
                 width: '100%',
@@ -107,9 +113,9 @@ export default function GraphDashBoardMain() {
 
                 padding: '20px'
             }}>
-               <span> {variablenameshown} </span>
-               <span>Language in </span>
-               <span className='text-red-600'>{currencyvariablevalue.toUpperCase()}</span>
+                <span> {variablenameshown} </span>
+                <span>Language in </span>
+                <span className='text-red-600'>{currencyvariablevalue.toUpperCase()}</span>
                 {graphdata ? <Line data={data} options={options} /> : <p>Loading graph...</p>}
             </div>
         </div>

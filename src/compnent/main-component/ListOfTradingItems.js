@@ -6,7 +6,7 @@ export default function ListOfTradingItems() {
     const [listdataloaded, setListDataUpdate] = useState([]);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;  // Number of items you want to display per page
+    const itemsPerPage = 10;  // Number of items you want to display per page
 
     // Function to handle pagination
     function onNextButtonClick() {
@@ -14,30 +14,13 @@ export default function ListOfTradingItems() {
     }
     
 
-/*     useEffect(() => {
-        async function listOfTradingFunction() {
-            // const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en`;
-            const url = `/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en`;
 
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                setListDataUpdate(data);
-            } catch (error) {
-                console.error("Failed to fetch data:", error);
-            }
-        }
-        listOfTradingFunction();
-    }, [currencyvariablevalue, currentPage]);  */
 
     useEffect(() => {
         async function fetchTradingData() {
           const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyvariablevalue}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en`;
             try {
                 const response = await fetch(url);
-                /* if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                } */
                 const data = await response.json(); // Attempt to parse JSON
                 setListDataUpdate(data);
             } catch (error) {
@@ -51,7 +34,7 @@ export default function ListOfTradingItems() {
 
     return (
         <>
-            <div>
+            <div >
                 <h1 className="text-red-500">Cryptocurrency Dashboard</h1>
                 <div className="bg-cyan-300 rounded-lg mt-4">
                     <p >{currencyvariablevalue.toUpperCase()}</p>
