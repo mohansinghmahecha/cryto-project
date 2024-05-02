@@ -1,6 +1,7 @@
-// import FooterComponent from "./FooterComponent";
+import FooterComponent from "./FooterComponent";
 import Header from "./Header";
 import ListOfTradingItems from "./ListOfTradingItems";
+import '../main-component/topcss.css';
 
 export default function MainComponent() {
     return (
@@ -19,15 +20,9 @@ export default function MainComponent() {
             </div>
 
             {/* Footer component */}
-            <div style={
-                {
-                    display : 'none',
-                    width: '50%',
-                    marginTop : '-70vh'
-                }
-            }>
+            <div className="hello">
 
-                {/* <FooterComponent /> */}
+                 < FooterComponent /> 
             </div>
         </div>
     );

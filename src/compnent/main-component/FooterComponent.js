@@ -1,9 +1,11 @@
-function FooterComponent(){
+export default  function FooterComponent(){
     return (
         <div className="border-4 border-sky-600">
-            <h1>bye</h1>
+            <h1>bye from website</h1>
+            <h1>bye fromsdfsdf  website</h1>
 
-             <div style={
+
+           {/*   <div style={
                 {
                     display : 'grid',
                     gridTemplateColumns: 'repeat(2, 1fr)',
@@ -24,9 +26,9 @@ function FooterComponent(){
                 
 
 
-             </div>
+             </div>  */}
+             {/* end comments */}
         </div>
     )
 
 }
-export default FooterComponent;

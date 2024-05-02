@@ -3,6 +3,7 @@ import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import { useSelector } from 'react-redux';
 
+
 Chart.register(...registerables);
 
 export default function GraphDashBoardMain() {
