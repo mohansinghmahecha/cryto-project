@@ -18,3 +18,9 @@ export function listofallproduct(products) {
     payload: items
   };
 }
+export function exchangeFn(item){
+  return {
+    type : "EXCHANGE",
+    payload  : item
+  };
+}
