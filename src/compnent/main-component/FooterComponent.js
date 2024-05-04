@@ -1,25 +1,50 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { exchangeFn } from "../../Redux/State/action";
-import { exchangeFunction } from "../../Redux/State/reducer";
+
 
 export default function FooterComponent() {
-    const [exchangeRates, setexchangeRates] = useState();
+
     const dispetch = useDispatch();
     const exchangedataforselect = useSelector(state => state.exchangeFunction); // Make sure the path matches where your data is in the Redux store
 
+    const [buy, setBuy] = useState('');
+    const [sell, setSell] = useState('');
+    const [value, setValue] = useState('');
+    const [qnty, setQuantity] = useState(1);
+
+
+    function btnExchange() {
+        const buyNumber = parseFloat(buy); // Ensure conversion to number
+        const sellNumber = parseFloat(sell); // Ensure conversion to number
+        const quantityNumber = parseFloat(qnty); // Ensure conversion to number
+
+        const result = (sellNumber / buyNumber) * quantityNumber;
+        setValue(result.toFixed(3));
+
+    }
+
+
+    function onBuy(e) {
+        setBuy(e.target.value);
+    }
+    function onSell(e) {
+        setSell(e.target.value);
+    }
+    function quantity(e) {
+        setQuantity(e.target.value);
+
+    }
     useEffect(
         () => {
             async function dataload() {
                 try {
-                    // var url = 'https://api.coingecko.com/api/v3/search/trending';
-                    var url = 'https://api.coingecko.com/api/v3/exchange_rates';
+                    //var url = 'https://api.coingecko.com/api/v3/exchange_rates';
+                    var url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
                     var resp = await fetch(url)
                     var newresp = await resp.json()
 
-                    console.log('api is ', newresp.rates);
-
-                    dispetch(exchangeFn(newresp.rates))
+                    dispetch(exchangeFn(newresp))
                 } catch (error) {
                     console.log('while loading found error ', error);
                 }
@@ -30,26 +55,42 @@ export default function FooterComponent() {
         }, [dispetch]
     )
     return (
-        <div className="border-4 border-sky-600 flex flex-row w-full h-1/5">
-            {console.log(exchangedataforselect)}
-            <div className="w-2/4 h-full bg-amber-300">Porfolio
+        <div className="flex flex-row w-full h-1/5 p-4 bg-gray-200">
+            
+            <div className="w-2/4 h-full bg-amber-300 mr-2">Porfolio
             </div>
-            <div className="w-2/4 h-full bg-amber-700">
+            <div className="w-2/4 h-full bg-white rounded">
 
-                <h1>Exchange</h1>
-                <div>
-                    <spam>Sell</spam>
-                    <select>
-                        {exchangedataforselect && Object.entries(exchangedataforselect).map(([key, value]) => (
-                            // Added return statement here
-                            <option key={key} value={key}>{key} - {value.name}</option>
+                <h1 className="text-left font-medium text-[18px] ml-2 mt-2 mb-2" >Exchange Coin</h1>
+                <div className="flex">
+                    <spam className="ml-1 text-red">Sell</spam>
+                    <select onChange={onSell} className="ml-1">
+                        {Object.entries(exchangedataforselect).map(([key, value]) => (
+
+                            <option value={value.current_price}>{value.name}</option>
                         ))}
                     </select>
+                    <p>{sell}</p>
+                    <input type="number" placeholder="Quantity" onChange={quantity} className="ml-4 w-1/5"></input>
 
                 </div>
-                <div>
-                    <spam>Buy</spam>
+                <div className="flex mt-6 ">
+                    <spam className="ml-1 text-green">Buy</spam>
+                    <select onChange={onBuy} className="ml-1">
+                        {
+                            Object.entries(exchangedataforselect).map(([key, value]) => {
+                                //<option key={key} >{value.name}</option> 
+                                return <option value={value.current_price}>{value.name}</option>
+                            }
+
+                            )
+                        }
+                    </select>
+                    <p>{buy}</p>
+                    <p className="ml-4">Value: {value}</p>
+
                 </div>
+                <button className="mt-4 bg-blue-500 rounded-lg p-2 text-[16px]" onClick={btnExchange}>Exchange</button>
 
 
 

@@ -83,7 +83,6 @@ export default function GraphDashBoardMain() {
 
             },
             x: {
-                // display: true,
                 position: 'bottom',
 
             }
@@ -99,7 +98,7 @@ export default function GraphDashBoardMain() {
                     ))}
                 </select>
                 <div className='flex'>
-                    <button onClick={onDaysFunction(1)} className='rounded m-1 bg-cyan-200 p-1' >1D </button>
+                    <button onClick={onDaysFunction(2)} className='rounded m-1 bg-cyan-200 p-1' >2D </button>
                     <button onClick={onDaysFunction(5)} className='rounded m-1 bg-cyan-200 p-1'>5D </button>
                     <button onClick={onDaysFunction(7)} className='rounded m-1 bg-cyan-200 p-1' >7D </button>
                     <button onClick={onDaysFunction(30)} className='rounded m-1 bg-cyan-200 p-1' >1M </button>

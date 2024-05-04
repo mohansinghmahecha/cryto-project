@@ -18,8 +18,6 @@ export default function Header() {
 
     const selectCurrencyfunction = (e) => {
         var i = e.target.value;
-        //setCurrencyName(i);
-        console.log("data local updated", i);
         dispatch({ type: "NAME", payload: i }); // Dispatch action directly with payload
         
        
