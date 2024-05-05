@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { exchangeFn } from "../../Redux/State/action";
 
+import PieChartCreated from "./PieChartCreated";
+
 
 export default function FooterComponent() {
 
@@ -55,11 +57,16 @@ export default function FooterComponent() {
         }, [dispetch]
     )
     return (
-        <div className="flex flex-row w-full h-1/5 p-4 bg-gray-200">
+        <div className="flex flex-row w-full h-auto  rounded  bg-gray-200">
             
-            <div className="w-2/4 h-full bg-amber-300 mr-2">Porfolio
+            <div className="w-2/4 h-auto mr-2 bg-white rounded m-1">Porfolio
+            
+                <PieChartCreated/>
+
+            
             </div>
-            <div className="w-2/4 h-full bg-white rounded">
+            
+            <div className="w-2/4 h-auto m-1 bg-white rounded">
 
                 <h1 className="text-left font-medium text-[18px] ml-2 mt-2 mb-2" >Exchange Coin</h1>
                 <div className="flex">
@@ -79,7 +86,6 @@ export default function FooterComponent() {
                     <select onChange={onBuy} className="ml-1">
                         {
                             Object.entries(exchangedataforselect).map(([key, value]) => {
-                                //<option key={key} >{value.name}</option> 
                                 return <option value={value.current_price}>{value.name}</option>
                             }
 

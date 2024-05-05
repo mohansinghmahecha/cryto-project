@@ -15,6 +15,7 @@ export default function MainComponent() {
             <div>
             <ListOfTradingItems />
             </div>
+            <h1>Created By Mohan 💚</h1>
 
         </div>
     );

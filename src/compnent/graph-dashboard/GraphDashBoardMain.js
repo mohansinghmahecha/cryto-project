@@ -53,7 +53,6 @@ export default function GraphDashBoardMain() {
     }, [currencyvariablevalue, variablenameshown, dayscount]);
 
     const data = {
-        // labels: graphdata ? graphdata.prices.map(price => new Date(price[0]).toLocaleString()) : [],
 
         labels: graphdata ? graphdata.prices.map(price => {
             const date = new Date(price[0]);
