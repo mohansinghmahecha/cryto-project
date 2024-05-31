@@ -6,7 +6,7 @@ export default function ListOfTradingItems() {
     const [listdataloaded, setListDataUpdate] = useState([]);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;  // Number of items you want to display per page
+    const itemsPerPage = 7;  // Number of items you want to display per page
 
     // Function to handle pagination
     function onNextButtonClick() {
@@ -28,7 +28,7 @@ export default function ListOfTradingItems() {
     }, [currencyvariablevalue, currentPage]);
 
     return (
-        <div className="xl:block lg:block 2xl:block hidden sm:block md:block h-[200px]">
+        <div className="xl:block lg:block 2xl:block hidden sm:hidden md:block h-[200px]">
             <h1 className="text-red-500">Cryptocurrency Dashboard</h1>
             <div className="bg-cyan-300 rounded-lg mt-4">
                 <p >{currencyvariablevalue.toUpperCase()}</p>

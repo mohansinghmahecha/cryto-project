@@ -41,7 +41,6 @@ export default function FooterComponent() {
         () => {
             async function dataload() {
                 try {
-                    //var url = 'https://api.coingecko.com/api/v3/exchange_rates';
                     var url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
                     var resp = await fetch(url)
                     var newresp = await resp.json()
