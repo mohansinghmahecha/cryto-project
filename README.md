@@ -1,4 +1,5 @@
-https://cdn.pixabay.com/photo/2017/01/25/12/31/bitcoin-2007769_1280.jpg
+# Frontend Project 
+
 
 # Getting Started with Create React App
 
