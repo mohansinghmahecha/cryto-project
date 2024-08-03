@@ -1,7 +1,7 @@
 
 # Crytocurrency Dashboard
 
-This website is created for the view realtime use api and use of 3rd party liabries example : chartjs
+This website is created for tracking crytocurrencies realtime price and graph with the help of 3rd party liabries example : chartjs
 
 look the file name project.json for more info .
 
