@@ -8,10 +8,9 @@ function App() {
 
   return (
     <div className="App">
-     <Navbar/>
+     
+     <Navbar/>   {/* menu bar */}
      <MainComponent/>
-
-
     </div>
   );
 }

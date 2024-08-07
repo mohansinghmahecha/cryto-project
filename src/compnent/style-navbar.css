@@ -2,4 +2,8 @@
     
     
     box-shadow: 10px 5px 5px #bae6fd;
+    border: 2px solid red;
+    width: 100%;
+    padding: 4px;
+
 }

@@ -3,7 +3,7 @@ import '../compnent/style-navbar.css'
 
 export default function Navbar() {
     return (
-        <div className="styling ">
+        <div className=" flex w-full">
 
             <img className='w-20' alt='logoimage' src={ab} />
 
