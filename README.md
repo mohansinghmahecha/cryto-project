@@ -1,8 +1,30 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Crytocurrency Dashboard
 
-## Available Scripts
+This website is created for tracking crytocurrencies realtime price and graph with the help of 3rd party liabries example : chartjs
+
+look the file name project.json for more info .
+
+
+## Color Reference
+
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| light blue | ![#bae6fd](https://via.placeholder.com/10/bae6fd?text=+) #bae6fd |
+| blue | ![#3B82F6](https://via.placeholder.com/10/3B82F6?text=+) #3B82F6 |
+| Red | ![#00b48a](https://via.placeholder.com/10/F04444?text=+) #F04444 |
+
+
+## Screenshots of project
+
+
+
+![Graph](https://firebasestorage.googleapis.com/v0/b/for-pic-storages.appspot.com/o/Screenshot%20(55).png?alt=media&token=531a26d8-229e-429a-b600-c2bf83867679)
+
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/for-pic-storages.appspot.com/o/Screenshot%20(56).png?alt=media&token=7da69da7-0b38-4e96-89fb-e65d32123903)
+
+
 
 In the project directory, you can run:
 
